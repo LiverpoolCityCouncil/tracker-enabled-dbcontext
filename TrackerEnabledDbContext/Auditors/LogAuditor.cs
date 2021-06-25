@@ -43,7 +43,7 @@ namespace TrackerEnabledDbContext.Core.Common.Auditors
                 UserName = userName?.ToString(),
                 EventDateUTC = changeTime,
                 EventType = eventType,
-                TypeFullName = entityType.FullName,
+                TypeFullName = entityType.BaseType.FullName,
                 RecordId = GetPrimaryKeyValuesOf(_dbEntry, keyNames).ToString()
             };
 
@@ -111,7 +111,7 @@ namespace TrackerEnabledDbContext.Core.Common.Auditors
                 output += "]";
                 return output;
             }
-            throw new KeyNotFoundException("key not found for " + dbEntry.Entity.GetType().FullName);
+            throw new KeyNotFoundException("key not found for " + dbEntry.Entity.GetType().BaseType.FullName);
         }
 
         protected virtual object OriginalValue(string propertyName)

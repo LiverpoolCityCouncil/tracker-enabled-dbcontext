@@ -70,7 +70,7 @@ namespace TrackerEnabledDbContext.Core.Common.Tools
         {
             cancellationToken.ThrowIfCancellationRequested();
 
-            string typeFullname = entityType.FullName;
+            string typeFullname = entityType.BaseType.FullName;
 
             string tableName = GetTableName(entityType);
 

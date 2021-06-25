@@ -18,7 +18,7 @@ namespace TrackerEnabledDbContext.Common.Configuration
                     (key,value) => new TrackingConfigurationValue(true, TrackingConfigurationPriority.High);
 
                 TrackingDataStore.PropertyConfigStore.AddOrUpdate(
-                    new PropertyConfigurationKey(property.Name, typeof (T).FullName),
+                    new PropertyConfigurationKey(property.Name, typeof (T).BaseType.FullName),
                     new TrackingConfigurationValue(true, TrackingConfigurationPriority.High),
                     factory
                     );

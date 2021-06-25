@@ -11,7 +11,7 @@ namespace TrackerEnabledDbContext.Common.Configuration
         {
             if (typeof (IUnTrackable).IsAssignableFrom(entityType)) return false;
 
-            TrackingConfigurationValue value = TrackingDataStore.EntityConfigStore.GetOrAdd(entityType.FullName, (key) => EntityConfigValueFactory(key, entityType));
+            TrackingConfigurationValue value = TrackingDataStore.EntityConfigStore.GetOrAdd(entityType.BaseType.FullName, (key) => EntityConfigValueFactory(key, entityType));
 
             return value.Value;
         }

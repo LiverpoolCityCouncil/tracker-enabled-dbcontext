@@ -21,7 +21,7 @@ namespace TrackerEnabledDbContext.Core.Common.Configuration
 
             var properties = entity.FindPrimaryKey().Properties;
 
-            return properties.Select(x => new PropertyConfigurationKey(x.Name, entityType.FullName));
+            return properties.Select(x => new PropertyConfigurationKey(x.Name, entityType.BaseType.FullName));
         }
     }
 }

@@ -31,7 +31,7 @@ namespace TrackerEnabledDbContext.Core.Common.Auditors
                 string pn = me.Metadata.Name;
 
                 //skip anything with SkipTracking attribute applied and (NavigationEntry and ReferenceEntry)
-                if (PropertyTrackingConfiguration.IsTrackingEnabled(new PropertyConfigurationKey(pn, entityType.FullName), entityType) && (IsPropertyEntry(pn) && IsValueChanged(pn)))
+                if (PropertyTrackingConfiguration.IsTrackingEnabled(new PropertyConfigurationKey(pn, entityType.BaseType.FullName), entityType) && (IsPropertyEntry(pn) && IsValueChanged(pn)))
                 {
                     yield return new AuditLogDetail
                     {

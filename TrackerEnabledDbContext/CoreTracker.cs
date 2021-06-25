@@ -191,7 +191,7 @@ namespace TrackerEnabledDbContext.Core.Common
         {
             Type entityType = typeof(TEntity);
             return typeof(TEntity).Assembly.GetTypes()
-                .Where(t => t.IsSubclassOf(entityType) || t.FullName == entityType.FullName).Select(m => m.FullName);
+                .Where(t => t.IsSubclassOf(entityType) || t.BaseType.FullName == entityType.BaseType.FullName).Select(m => m.BaseType.FullName);
         }
 
         protected virtual void RaiseOnAuditLogGenerated(object sender, AuditLogGeneratedEventArgs e)

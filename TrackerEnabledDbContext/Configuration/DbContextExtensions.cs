@@ -17,7 +17,11 @@ namespace TrackerEnabledDbContext.Core.Common.Configuration
 
         public static IEnumerable<PropertyConfigurationKey> GetKeyNames(this DbContext context, Type entityType)
         {
-            return context.Model.FindEntityType(entityType).FindPrimaryKey().Properties.Select(x => new PropertyConfigurationKey(x.Name, entityType.FullName));
+            var entity = context.Model.FindEntityType(entityType.BaseType.FullName);
+
+            var properties = entity.FindPrimaryKey().Properties;
+
+            return properties.Select(x => new PropertyConfigurationKey(x.Name, entityType.FullName));
         }
     }
 }
